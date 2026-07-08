@@ -42,6 +42,22 @@ Toggle between dark and light themes from the sidebar. The theme preference is s
 
 ![White theme](images/white-theme.png)
 
+## Network Proxy
+
+Setup downloads (Python, PyTorch, ML models, ffmpeg, uv) come from GitHub, PyPI, and Hugging Face. If those are slow or unreachable from your network, you can route all downloads through an HTTP(S) proxy.
+
+There is no Settings UI for this — quit the app, then add a `proxy` key to `~/.nightingale/config.json`:
+
+```json
+{
+  "proxy": "http://127.0.0.1:7890"
+}
+```
+
+On the next launch, Nightingale exports the standard proxy environment variables (`HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, and their lowercase variants) for its own process before any downloads start, so both in-app downloads and the analyzer subprocess (uv, pip, model downloads) go through the proxy. Environment variables that are already set take precedence, and nothing is exported when the key is absent or empty.
+
+This is mainly useful for GUI launches, where shell profile exports (`.bashrc`, `.zshrc`) don't apply.
+
 ## Notable Settings
 
 `config.json` is written by the app — you'll usually change these from **Settings** rather than by editing the file directly. In v0.8.0, settings moved from a modal into a dedicated page with **General** and **Analysis** tabs. A few keys worth knowing:
@@ -63,4 +79,5 @@ Toggle between dark and light themes from the sidebar. The theme preference is s
 | `last_video_flavor` | Index of the last-used Pixabay video flavor (Nature, Underwater, Space, City, Countryside). |
 | `last_theme` | Index of the last-used playback background (shaders → video → source). |
 | `language_overrides` | Per-song forced ASR language, keyed by song hash. Set this from the song-list controls. |
+| `proxy` | Optional HTTP(S) proxy URL (e.g. `http://127.0.0.1:7890`) applied to all downloads at startup. No Settings UI — edit the file while the app is closed. See [Network Proxy](#network-proxy). |
 | `data_path` | Selected data folder root. Set during first-run setup. |

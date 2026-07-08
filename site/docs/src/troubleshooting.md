@@ -4,6 +4,8 @@
 
 The initial setup downloads Python, PyTorch, ML models, and video backgrounds. On a slow connection this can take 10–20 minutes. Subsequent launches skip setup entirely.
 
+If downloads stall or fail because GitHub, PyPI, or Hugging Face are hard to reach from your network, you can route them through an HTTP(S) proxy — see [Configuration → Network Proxy](./configuration.md#network-proxy).
+
 ## Analysis Fails
 
 If song analysis fails:

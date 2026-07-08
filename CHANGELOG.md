@@ -13,6 +13,10 @@ below.
 
 ## [Unreleased]
 
+### Features
+
+- Optional HTTP proxy for downloads — set `"proxy": "http://host:port"` in `~/.nightingale/config.json` and Nightingale exports the standard proxy environment variables (`HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, and lowercase variants) at startup, so setup downloads (Python, PyTorch, ML models, ffmpeg, uv) and the analyzer subprocess route through the proxy. Useful on restricted networks and for GUI launches where shell profile exports don't apply. Environment variables that are already set take precedence; there is no Settings UI. See [docs/configuration](https://nightingale.cafe/docs/configuration.html#network-proxy).
+
 ## [0.9.0] - 2026-07-06
 
 ### Features
